@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Add to PlayerDatabase</title>
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch|Charmonman" rel="stylesheet">
+</head>
+<body>
+    <!--
+        <ul id="navi">
+            <!-- https://www.w3schools.com/css/css_navbar.asp
+            <li><a href="/">HOME</a></li>
+            <li><a class="active" href="/add">ADD</a></li>
+            <li><a href="delete.html">DELETE</a></li>
+            <li><a href="update.html">UPDATE</a></li>
+            <li><a href="index.html">INDEX</a></li>
+        </ul>
+        -->
+    <div class="add">
+        <p>Add to Database</p>
+        
+
+        <div>
+            <input type="radio" id="player" name="selectAdd" value="player" checked><label for="player">PLAYER</label>
+            <input type="radio" id="region" name="selectAdd" value="region"><label for="region">REGION</label>
+            <input type="radio" id="team" name="selectAdd" value="team"><label for="team">TEAM</label>
+            <input type="radio" id="character" name="selectAdd" value="character"><label for="character">CHARACTER</label>
+        </div>
+
+        <div id="radioDatabase">
+
+            <form id="addEntry" action="/add" method="post">
+                <fieldset>
+                    <legend id="legendName">PlayerDatabase</legend>
+
+                    <div id="submissionData">
+                    </div>
+
+                    <br>
+                    <input type="submit" value="SUBMIT" id="addButton">
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+            <!--https://www.geeksforgeeks.org/how-to-append-html-code-to-a-div-using-javascript/-->
+            function addCharEntry() {
+                document.getElementById("addCharacterEntry").insertAdjacentHTML("afterBegin",
+                    "Character Played: <input type='text' name='characterName' /><br />");
+            }
+
+            document.getElementById('region').addEventListener('click', function () {
+                var nameChange = document.getElementById('legendName');
+                nameChange.innerHTML = "RegionDatabase";
+
+                var bodyChange = document.getElementById('submissionData');
+                bodyChange.innerHTML = "";
+
+                bodyChange.insertAdjacentHTML('beforeend', 'Region Name*: <input type="text" name="regionName" id="regionName"> </br>')
+            });
+
+            document.getElementById('team').addEventListener('click', function () {
+                var nameChange = document.getElementById('legendName');
+                nameChange.innerHTML = "TeamDatabase";
+
+                var bodyChange = document.getElementById('submissionData');
+                bodyChange.innerHTML = "";
+
+                bodyChange.insertAdjacentHTML('beforeend', `
+                            Region*: <select name="region_id" id="region_id">
+                            {{#each context.regions}}
+                            <option value="{{this.region_id}}">{{this.regionName}}</option>
+                            {{/each}}
+                    `);
+                bodyChange.insertAdjacentHTML('beforeend', '<br></br>Team Name*: <input type="text" name="teamName" id="teamName"></br>');
+            });
+
+            document.getElementById('character').addEventListener('click', function () {
+                var nameChange = document.getElementById('legendName');
+                nameChange.innerHTML = "CharacterDatabase";
+
+                var bodyChange = document.getElementById('submissionData');
+                bodyChange.innerHTML = "";
+
+                bodyChange.insertAdjacentHTML('beforeend', `
+                <div id="addCharacterEntry">
+                    Character:
+                    <input type="text" name="characterName" id="characterName" /><br /><br />
+                </div>
+                    `);
+            });
+
+            document.getElementById('player').addEventListener('click', function () {
+                   changePlayerDatabase()
+            });
+
+            if (document.getElementById("player").checked = true) {
+                changePlayerDatabase()
+            };
+            /*
+            Please note that we are not using getElement by id
+            b.c it doesn't load up during the document load, and this will help repopulate
+            the for submission
+            */
+            function changePlayerDatabase() {
+                var nameChange = document.getElementById('legendName');
+                nameChange.innerHTML = "PlayerDatabase";
+
+                var bodyChange = document.getElementById('submissionData');
+                bodyChange.innerHTML = "";
+                bodyChange.insertAdjacentHTML('beforeend', `
+                    Team*: <select name="team_id" id="team_id">
+                    {{#each context.teams}}
+                    <option value="{{this.team_id}}">{{this.teamName}}</option>
+                    {{/each}}
+                    `);
+                bodyChange.insertAdjacentHTML('beforeend', `
+					<br></br>
+                    Player Name*:
+                    <input type="text" name="playerName" id="playerName">
+					<br></br>
+                    `);
+                bodyChange.insertAdjacentHTML('beforeend', `
+                    Role*: <select name="role_id" id="role_id">
+                    {{#each context.roles}}
+                    <option value="{{this.role_id}}">{{this.roleName}}</option>
+                    {{/each}}
+                    `);
+                bodyChange.insertAdjacentHTML('beforeend', `
+                    <br></br>
+                    Character: <select name="character_id" id="character_id">
+                    {{#each context.characters}}
+                    <option value="{{this.character_id}}">{{this.characterName}}</option>
+                    {{/each}}
+                    `);
+
+            }
+
+    </script>
+    <script src="addScript.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

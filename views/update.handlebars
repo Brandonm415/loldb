@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Update PlayerDatabase</title>
+    <link rel="stylesheet" href="css/stylesheet.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch|Charmonman" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="update">
+        <p>Update Player Database</p>
+        <div>
+            <br>
+            <table style="width:100%;" id="player">
+                <form id="updatePlayer" action="/update" method="post">
+                    <tr>
+                        <th>PlayerId</th>
+                        <th>PlayerName</th>
+                        <th>Team</th>
+                        <th>Role</th>
+                        <th>Character</th>
+                        <th>UPDATE</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="player_id" id="player_id">
+                                {{#each context.players}}
+                                <option name="player_id" value="{{this.player_id}}">{{ this.player_id }}</option>
+                                {{/ each}}
+                        </td>
+
+                        <td><input type="text" name="playerName" id="playerName" placeholder="Change Name" /></td>
+                        <td>
+                            <select name="team_id" id="team_id">
+                                {{#each context.teams}}
+                                <option name="team_id" value="{{this.team_id}}">{{ this.teamName }}</option>
+                                {{/ each}}
+                        </td>
+                        <td>
+                            <select name="role_id" id="role_id">
+                                {{#each context.roles}}
+                                <option value="{{this.role_id}}">{{ this.roleName }}</option>
+                                {{/ each}}
+                        </td>
+                        <td>
+                            <select name="character_id" id="character_id">
+                                {{#each context.characters}}
+                                <option value="{{this.character_id}}">{{ this.characterName }}</option>
+                                {{/ each}}
+                        </td>
+
+</form>
+                <td id="buttonCenter">
+                    
+                </style><button class="uniButton" onclick="sendUpdateEntry()">SEND</button></td>
+                </tr>
+            </table>
+        </div>
+
+<br>
+        <div>
+            <table id="myTable">
+                <tr>
+                    <th>Player_id</th>
+                    <th>Player</th>
+                    <th>Team</th>
+                    <th>Role</th>
+                    <th>Character</th>
+                </tr>
+                <tr>
+                    {{#each context.players}}
+                <tr>
+                    <td>{{this.player_id}}</td>
+                    <td class="pnames">{{this.playerName}}</td>
+                    <td>{{this.teamName}}</td>
+                    <td>{{this.roleName}}</td>
+                    <td>{{this.characterName}}</td>
+                    {{/each}}
+
+
+</table>
+
+        </div>
+    </div>
+
+    <script>
+        function updateEntry(entryId) {
+
+            var tempHolder = []
+            var x
+
+            x = document.getElementById("player" + entryId).rows[1].cells[0];
+            x.innerHTML = "";
+            x.insertAdjacentHTML('beforeend', `
+                    <select name="team_id" id="team_id">
+                    {{#each context.teams}}
+                    <option value="{{this.team_id}}">{{this.teamName}}</option>
+                    {{/each}}
+                    `);
+
+            x = document.getElementById("player" + entryId).rows[1].cells[1];
+            tempHolder = x.innerHTML
+            x.innerHTML = '<input type="text" name="playerName" id="playerName" value="' + tempHolder + '">'
+
+            x = document.getElementById("player" + entryId).rows[1].cells[2];
+            x.innerHTML = "";
+            x.insertAdjacentHTML('beforeend', `
+                    <select name="role_id" id="role_id">
+                    {{#each context.roles}}
+                    <option value="{{this.role_id}}">{{this.roleName}}</option>
+                    {{/each}}
+                    `);
+
+            x = document.getElementById("player" + entryId).rows[1].cells[3];
+            x.innerHTML = "";
+            x.insertAdjacentHTML('beforeend', `
+                    <select name="character_id" id="character_id">
+                    {{#each context.characters}}
+                    <option value="{{this.character_id}}">{{this.characterName}}</option>
+                    {{/each}}
+                    `);
+
+            /*
+            x = document.getElementById("player" + entryId).rows[1].cells[4];
+            x.innerHTML = ""
+            x.innerHTML = '<button style="background-color:green; display:block; margin:auto onclick="sendUpdateEntry({{this.player_id}})">SUBMIT</button>';
+            */
+        }
+
+
+        //Sources used:https://www.w3schools.com/howto/howto_js_filter_table.asp
+        function searchPlayer() {
+            //var player = document.getElementById("nameOfPlayer").value;
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("nameOfPlayer");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByClassName("pnames")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+
+    <script src="updateEntry.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

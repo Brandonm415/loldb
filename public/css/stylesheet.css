@@ -1,0 +1,258 @@
+/* this document contains elements to edit the navigation tool box
+    Author: doandu
+    DATE: 052319
+    https://www.w3schools.com/css/css_navbar.asp 
+*/
+
+/*NAVIGATION STYLE*/
+#navi {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: darkslategray;
+    postion: fixed;
+    top: 0;
+    width: 100x;
+}
+
+#regions {
+    display: flex;
+    justify-content: center;
+}
+
+#regions a {
+    margin: 1%;
+    text-decoration: none;
+    font-size: 35px;
+    color: black;
+    font-family: Chakra Petch;
+}
+
+#regions a:hover {
+    opacity: 0.5;
+}
+
+#regionTitle {
+    display: flex;
+    justify-content: center;
+    font-family: Chakra Petch;
+    font-size: 40px;
+}
+
+.lineBreak {
+    width: 35%;
+}
+
+#navi li a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    border-right: 1px solid white;
+}
+
+#navi li a:hover {
+    background-color: black;
+}
+
+.active {
+    background-color: darkgray;
+}
+
+/*HomeSearchBar*/
+.homeSearchBar {
+}
+
+.searchBar {
+    width: 50%;
+    margin: auto;
+}
+
+.searchBar form {
+    display: flex;
+    flex-direction: column;
+    margin: 1%;
+    justify-content: center;
+}
+
+#homeTitle {
+    font-family: Chakra Petch;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#searchButton {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-family: Chakra Petch;
+}
+
+#searchButton:hover {
+    background-color: #45a049;
+}
+
+#playerSearch {
+    font-family: Chakra Petch;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.homeSearchBar {
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.roster {
+    display: block;
+    font-family: Chakra Petch;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table {
+    width: 100%;
+}
+
+th {
+    height: 50px;
+}
+
+th, td {
+    padding: 15px;
+}
+
+.add {
+    font-family: Chakra Petch;
+}
+
+.add input {
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.add p {
+    font-size: 35px;
+}
+
+#addButton {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#extra {
+    background-color: #A00000 ;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-family: Chakra Petch;
+}
+
+#extra:hover {
+    background-color: #900000 ;
+}
+
+#addButton:hover {
+    background-color: #45a049;
+}
+
+.delete {
+    font-family: Chakra Petch;
+}
+
+.delete input {
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.delete p {
+    font-size: 35px;
+}
+
+.update {
+    font-family: Chakra Petch;
+}
+
+.update p {
+    font-size: 35px;
+}
+
+#updateButton {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#deleteButton {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.update input {
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+#deleteButton:hover {
+    background-color: #45a049;
+}
+
+#updateButton:hover {
+    background-color: #45a049;
+}
+
+.uniButton {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: auto;
+    cursor: pointer;
+}
+
+.uniButton:hover {
+    background-color: #45a049;
+}
+
+#buttonCenter {
+    text-align: center;
+}
+
+/*Change the background a bit*/
+body {
+    background-color: white;
+}

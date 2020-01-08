@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Search PlayerDatabase</title>
+		<link rel="stylesheet" href="css/stylesheet.css">
+		<link href="https://fonts.googleapis.com/css?family=Chakra+Petch|Charmonman" rel="stylesheet">
+	</head>
+	<body>
+		<!-- 
+		<ul id="navi">
+			https://www.w3schools.com/css/css_navbar.asp
+			<li><a href="/">HOME</a></li>
+			<li><a class="active" href="/add">ADD</a></li>
+			<li><a href="delete.html">DELETE</a></li>
+			<li><a href="update.html">UPDATE</a></li>
+			<li><a href="index.html">INDEX</a></li>
+		</ul>
+		-->
+		<div id="homeTitle">
+			<h1>League of Legends Players Database</h1>
+		</div>
+
+		<div id="playerSearch">
+			<h2>Search for a specific player!</h2>
+		</div>
+		<hr class="lineBreak">
+		<div class="searchBar">
+			<form>
+				<input onkeyup="searchPlayer()" id="nameOfPlayer" type="text" name="Search" placeholder="Search Database.." class="homeSearchBar" />
+				
+			</form>
+		</div>
+		
+		<br>
+
+		<div class="roster">
+			<table id="myTable">
+				<tr>
+					<th>Region</th>
+					<th>Team</th>
+					<th>Player</th>
+					<th>Role</th>
+					<th>Character</th>
+				</tr>
+				{{#each context.players}}
+				<tr>
+					<td>{{this.regionName}}</td>
+					<td>{{this.teamName}}</td>	
+					<td class="pnames">{{this.playerName}}</td>
+					<td>{{this.roleName}}</td>
+					<td>{{this.characterName}}</td>
+				</tr>
+				{{/each}}
+			</table>
+		<script>
+			//Sources used:https://www.w3schools.com/howto/howto_js_filter_table.asp
+			function searchPlayer(){
+				//var player = document.getElementById("nameOfPlayer").value;
+				  var input, filter, table, tr, td, i, txtValue;
+				  input = document.getElementById("nameOfPlayer");
+				  filter = input.value.toUpperCase();
+				  table = document.getElementById("myTable");
+				  tr = table.getElementsByTagName("tr");
+
+				  // Loop through all table rows, and hide those who don't match the search query
+				  for (i = 0; i < tr.length; i++) {
+				    td = tr[i].getElementsByClassName("pnames")[0];
+				    if (td) {
+				      txtValue = td.textContent || td.innerText;
+				      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+				        tr[i].style.display = "";
+				      } else {
+				        tr[i].style.display = "none";
+				      }
+				    }
+				  }		
+			}
+		</script>
+		<script src="script.js"></script>
+	</body>
+</html>

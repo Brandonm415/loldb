@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Player from Database</title>
+    <link rel="stylesheet" href="css/stylesheet.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch|Charmonman" rel="stylesheet">
+    <!-- INCLUDE THIS BELOW FOR THE AJAX-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="delete">
+        <p>Delete Player from Database</p>
+        <form>
+            <fieldset>
+                <legend>PlayerDatabase</legend>
+                <input id="nameOfPlayer" onkeyup="searchPlayer()" type="text" name="Search" placeholder="Search Database.." />
+            </fieldset>
+            <div>
+            </div>
+        </form>
+        <br>
+        <table id="myTable">
+            <tr>
+                <th>Team</th>
+                <th>Player</th>
+                <th>Role</th>
+                <th>Character</th>
+                <th>DELETE</th>
+            </tr>
+            <tr>
+                {{#each context.players}}
+            <tr>
+                <td>{{this.teamName}}</td>
+                <td class="pnames">{{this.playerName}}</td>
+                <td>{{this.roleName}}</td>
+                <td>{{this.characterName}}</td>
+                <td><button type="button" style="background-color:red; display:block; margin:auto" onclick="deleteEntry({{this.player_id}})">DELETE</button></td>
+                {{/each}}
+
+
+        </table>
+
+
+        <script>
+            //Sources used:https://www.w3schools.com/howto/howto_js_filter_table.asp
+            function searchPlayer(){
+                //var player = document.getElementById("nameOfPlayer").value;
+                  var input, filter, table, tr, td, i, txtValue;
+                  input = document.getElementById("nameOfPlayer");
+                  filter = input.value.toUpperCase();
+                  table = document.getElementById("myTable");
+                  tr = table.getElementsByTagName("tr");
+
+                  // Loop through all table rows, and hide those who don't match the search query
+                  for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByClassName("pnames")[0];
+                    if (td) {
+                      txtValue = td.textContent || td.innerText;
+                      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                      } else {
+                        tr[i].style.display = "none";
+                      }
+                    }
+                  }     
+            }
+        </script>
+
+        
+
+
+    </div>
+    <script src="deleteEntry.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
